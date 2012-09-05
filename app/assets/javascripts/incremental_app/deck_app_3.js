@@ -33,22 +33,5 @@ Deck.prototype.shuffle = function() {
 };
 
 Deck.prototype.pickCard = function() {
-  return this.cards[Math.floor((Math.random()*52))];
-};
-
-Deck.prototype.throwCard = function() {
-  var deck = this;
-
-  $.ajax({
-    url: 'card/throw.json',
-    type: "GET",
-    dataType: "json",
-    contentType: "application/json; charset=utf-8",
-    success: function (data) {
-      deck.throwCardCallback(data);
-    }
-  });
-};
-
-Deck.prototype.throwCardCallback = function(data) {
+  return this.cards[Math.floor((Math.random() * 52))];
 };

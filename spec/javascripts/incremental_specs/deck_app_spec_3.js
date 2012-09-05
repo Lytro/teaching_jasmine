@@ -28,7 +28,7 @@ describe("Deck", function () {
     });
   });
 
-  it("guesses your card", function () {
+  it("using magic, forces you to pick a certain card", function () {
     deck.shuffle();
     spyOn(deck, 'pickCard').andReturn(deck.cards[0]);
 
@@ -36,31 +36,5 @@ describe("Deck", function () {
     deck.shuffle();
 
     expect(deck.pickCard()).toEqual(yourCard);
-  });
-
-  it("guesses your card", function () {
-    deck.shuffle();
-    spyOn(deck, 'cards').andReturn(deck.cards[0]);
-
-    var yourCard = deck.cards[0];
-    deck.shuffle();
-
-    expect(deck.cards[0]).toEqual(yourCard);
-  });
-
-  it("throws your card", function () {
-    var jsonResponse = {
-      suite: 'heart',
-      value: '2'
-    };
-
-    spyOn($, 'ajax').andCallFake(function (options) {
-      options.success(jsonResponse);
-    });
-    spyOn(deck, 'throwCardCallback');
-
-    deck.throwCard();
-    expect(deck.throwCardCallback).toHaveBeenCalled();
-    expect(deck.throwCardCallback).toHaveBeenCalledWith(jsonResponse);
   });
 });
